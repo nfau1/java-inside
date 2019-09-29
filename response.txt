@@ -10,9 +10,7 @@ Que se passe t'il ? Pourquoi ? Comment corriger le problème ?
 
 Réponse 3)
 
-Un commit ne permet pas de modifier le repository de GitHub. En effet, afin de modifier les versions distantes, il faut utiliser la commande
-git pull. Attention tout de même avec cette commande, il est préférable de pull / merge avant de push afin de ne pas écraser potentiellement
-des modifications effectuées par d'autres personnes. 
+Un commit ne permet pas de modifier le repository de GitHub et avant chaque commit, il faut indexer les nouveaux fichiers avec la commande add. En effet, afin de modifier les versions distantes, il faut utiliser la commande git push. Attention tout de même avec cette commande, il est préférable de pull / merge avant de push afin de ne pas écraser potentiellement des modifications effectuées par d'autres personnes. 
 
 Question 5)
 
