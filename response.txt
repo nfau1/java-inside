@@ -1,0 +1,29 @@
+Exercice 1 :
+
+Question 3)
+
+Dans votre home directory sur la machine de la fac (ou votre propre machine), cloner le projet avec git clone (dans un terminal).
+Changer l'editeur de texte (pour le texte des commits) pour utiliser vi
+export GIT_EDITOR=vi
+Modifier le README puis faite une git commit et aller vérifier que le README est bien mis à jour sur GitHub. 
+Que se passe t'il ? Pourquoi ? Comment corriger le problème ? 
+
+Réponse 3)
+
+Un commit ne permet pas de modifier le repository de GitHub. En effet, afin de modifier les versions distantes, il faut utiliser la commande
+git pull. Attention tout de même avec cette commande, il est préférable de pull / merge avant de push afin de ne pas écraser potentiellement
+des modifications effectuées par d'autres personnes. 
+
+Question 5)
+
+Modifier le contenu du fichier test.txt en utilisant directement l'interface de github (le petit stylo Edit) pui commiter le.
+Comment faire pour mettre à jour la copie local de votre repository pour que vous voyez le contenu du fichier changé sur la machine locale. 
+
+Réponse 5)
+
+Il faut utiliser la commande git push pour récupérer la version sur le Répository du GitHub. 
+
+
+
+
+
