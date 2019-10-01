@@ -15,7 +15,7 @@ public class Alien {
 		this.age = age;
 	}
 
-	@JSONProperty
+	@JSONProperty("testt")
 	public String getPlanet() {
 		return planet;
 	}

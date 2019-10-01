@@ -15,7 +15,7 @@ public class MainTest {
 			this.lastName = Objects.requireNonNull(lastName);
 		}
 
-		@JSONProperty
+		@JSONProperty("TON PRENOM")
 		public String getFirstName() {
 			return firstName;
 		}
@@ -59,7 +59,7 @@ public class MainTest {
 		
 		assertEquals(
 				"{\n" + 
-				"	firstName:John,\n" +
+				"	TON PRENOM:John,\n" +
 				"	lastName:Doe\n" +
 				"}"
 				,

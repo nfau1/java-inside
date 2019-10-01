@@ -13,10 +13,17 @@ public class Main {
 	private static String propertyName(String name) {
 		return Character.toLowerCase(name.charAt(3)) + name.substring(4);
 	}
+	
+	private static String getAnnotationNameOrMethodName(Method e){
+		
+		var jsonProperty = e.getAnnotation(JSONProperty.class).value();
+		return jsonProperty.isEmpty() ? 
+				 propertyName(e.getName()) : jsonProperty;
+	}
 
 	private static String fieldAndFieldValue(Method e, Object obj){
 			try {
-				return propertyName(e.getName()) + ":" + e.invoke(obj);
+				return getAnnotationNameOrMethodName(e) + ":" + e.invoke(obj);
 			} catch (IllegalAccessException e1) {
 				throw new IllegalStateException(e1);
 			}
