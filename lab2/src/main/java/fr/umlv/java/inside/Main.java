@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.joining;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Arrays;
 
 public class Main {
@@ -15,8 +16,16 @@ public class Main {
 	private static String fieldAndFieldValue(Method e, Object obj){
 			try {
 				return propertyName(e.getName()) + ":" + e.invoke(obj);
-			} catch (IllegalAccessException | InvocationTargetException e1) {
-				return "";
+			} catch (IllegalAccessException e1) {
+				throw new IllegalStateException(e1);
+			}
+			catch (InvocationTargetException e2) {
+				var cause = e2.getCause();
+				if(cause instanceof RuntimeException)
+					throw (RuntimeException)cause;
+				if(cause instanceof Error)
+					throw (Error)cause;
+				throw new UndeclaredThrowableException(e2);
 			}
 	}
 
@@ -24,7 +33,7 @@ public class Main {
 		var listOfMethods = obj.getClass().getMethods();
 		return Arrays.stream(listOfMethods)
 				.filter(e -> e.getName().startsWith("get"))
-				.map(e -> fieldAndFieldValue(e, obj)
+				.map(e -> fieldAndFieldValue(e, obj))
 				.collect(joining(",\n\t", "{\n\t", "\n}"));
 	}
 
