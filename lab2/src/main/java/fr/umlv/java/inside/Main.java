@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Main {
 
@@ -34,6 +35,7 @@ public class Main {
 		return Arrays.stream(listOfMethods)
 				.filter(e -> e.getName().startsWith("get"))
 				.map(e -> fieldAndFieldValue(e, obj))
+				.sorted(Comparator.naturalOrder())
 				.collect(joining(",\n\t", "{\n\t", "\n}"));
 	}
 
