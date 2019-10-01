@@ -5,13 +5,12 @@ jdk: openjdk13
 #   - mettre une commmande si nécessaire
 
 matrix : 
-  - include : 
-    - os : 
-      - linux
+  include : 
+    - os: linux
       script :
         - cd lab2 && mvn package
         - cd .. && cd lab1 && mvn package
-      - osx 
+    - os: osx 
       script :
         - cd lab2 && mvn package
         - cd .. && cd lab1 && mvn package      
