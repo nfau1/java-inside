@@ -1,7 +1,7 @@
 package fr.umlv.java.inside;
 
+import static java.util.stream.Collectors.joining;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class Main {
 
@@ -15,7 +15,7 @@ public class Main {
 			.map(e -> e.getName())
 			.filter(e -> e.substring(0, 3).equals("get"))
 			.map(Main::propertyName)
-			.collect(Collectors.joining(" "));
+			.collect(joining(",","{","}"));
 	}
 	/*public static String toJSON(Person person) {
 		return "{\n" + "  \"firstName\": \"" + person.getFirstName() + "\"\n" + "  \"lastName\": \""
