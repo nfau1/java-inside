@@ -3,9 +3,12 @@ jdk: openjdk13
 
 # install:
 #   - mettre une commmande si nécessaire
-os:
-  - linux
-  - osx
-script: 
-  - cd lab2 && mvn package
-  - cd .. && cd lab1 && mvn package
+
+matrix : 
+  -include : 
+    -os : 
+      -linux
+      script :
+        - cd lab2 && mvn package
+        - cd .. && cd lab1 && mvn package
+
