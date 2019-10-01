@@ -6,6 +6,7 @@ public class Alien {
 	private final String planet;
 	private final int age;
 
+	
 	public Alien(String planet, int age) {
 		if (age <= 0) {
 			throw new IllegalArgumentException("Too young...");
@@ -14,10 +15,12 @@ public class Alien {
 		this.age = age;
 	}
 
+	@JSONProperty
 	public String getPlanet() {
 		return planet;
 	}
 
+	@JSONProperty
 	public int getAge() {
 		return age;
 	}

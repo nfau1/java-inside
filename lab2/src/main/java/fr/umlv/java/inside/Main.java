@@ -33,7 +33,7 @@ public class Main {
 	public static String toJSON(Object obj) {
 		var listOfMethods = obj.getClass().getMethods();
 		return Arrays.stream(listOfMethods)
-				.filter(e -> e.getName().startsWith("get"))
+				.filter(e -> e.getName().startsWith("get") && e.isAnnotationPresent(JSONProperty.class))
 				.map(e -> fieldAndFieldValue(e, obj))
 				.sorted(Comparator.naturalOrder())
 				.collect(joining(",\n\t", "{\n\t", "\n}"));

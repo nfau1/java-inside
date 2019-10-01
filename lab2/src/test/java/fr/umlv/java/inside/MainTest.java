@@ -15,10 +15,12 @@ public class MainTest {
 			this.lastName = Objects.requireNonNull(lastName);
 		}
 
+		@JSONProperty
 		public String getFirstName() {
 			return firstName;
 		}
 
+		@JSONProperty
 		public String getLastName() {
 			return lastName;
 		}
@@ -40,10 +42,12 @@ public class MainTest {
 			this.age = age;
 		}
 
+		@JSONProperty
 		public String getPlanet() {
 			return planet;
 		}
-
+		
+		@JSONProperty
 		public int getAge() {
 			return age;
 		}
@@ -55,7 +59,6 @@ public class MainTest {
 		
 		assertEquals(
 				"{\n" + 
-				"	class:class fr.umlv.java.inside.MainTest$Person,\n" +
 				"	firstName:John,\n" +
 				"	lastName:Doe\n" +
 				"}"
