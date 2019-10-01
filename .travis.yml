@@ -7,5 +7,5 @@ os:
   - linux
   - osx
 script:
-  - cd lab1
+  - cd lab2
   - mvn package
