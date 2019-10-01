@@ -6,5 +6,6 @@ jdk: openjdk13
 os:
   - linux
   - osx
-- script: cd lab2 && mvn package
-- script: cd .. && cd lab1 && mvn package
+script: 
+  - cd lab2 && mvn package
+  - cd .. && cd lab1 && mvn package
