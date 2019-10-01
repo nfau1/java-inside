@@ -7,9 +7,17 @@ import java.lang.reflect.Method;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.lang.ClassValue;
 
 public class Main {
 
+	private final static ClassValue<Method[]> cacheMethods = new ClassValue<Method[]>() {
+		@Override
+		protected Method[] computeValue(Class<?> type) {
+			return type.getMethods();
+		}
+	};
+	
 	private static String propertyName(String name) {
 		return Character.toLowerCase(name.charAt(3)) + name.substring(4);
 	}
@@ -38,7 +46,9 @@ public class Main {
 	}
 
 	public static String toJSON(Object obj) {
-		var listOfMethods = obj.getClass().getMethods();
+		var listOfMethods = cacheMethods.get(obj.getClass());
+		//var listOfMethods = obj.getClass().getMethods();
+
 		return Arrays.stream(listOfMethods)
 				.filter(e -> e.getName().startsWith("get") && e.isAnnotationPresent(JSONProperty.class))
 				.map(e -> fieldAndFieldValue(e, obj))

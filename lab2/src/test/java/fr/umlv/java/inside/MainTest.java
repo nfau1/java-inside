@@ -60,14 +60,12 @@ public class MainTest {
 
 		assertEquals("{\n" + "	TON PRENOM:John,\n" + "	lastName:Doe\n" + "}", Main.toJSON(person));
 	}
+	
 
 	@Test
 	public void toJSonAlien() {
 		var person = new Alien("John", 10);
+		assertEquals("{\n" + "	age:10,\n" + "	planet:John\n" + "}", Main.toJSON(person));
 
-		assertEquals("{\n" + 
-				 "	age:10,\n" +
-				"	planet:John\n" + 
-				 "}", Main.toJSON(person));
 	}
 }
