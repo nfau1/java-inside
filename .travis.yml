@@ -9,4 +9,4 @@ os:
 matrix : 
   include : 
     - script: cd lab2 && mvn package
-    - script: cd lab1 && mvn package
+    - script: cd ../lab1 && mvn package
