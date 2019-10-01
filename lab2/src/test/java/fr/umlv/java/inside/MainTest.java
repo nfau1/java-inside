@@ -30,6 +30,7 @@ public class MainTest {
 					+ person.getLastName() + "\"\n" + "}\n";
 		}
 	}
+
 	public class Alien {
 		private final String planet;
 		private final int age;
@@ -46,7 +47,7 @@ public class MainTest {
 		public String getPlanet() {
 			return planet;
 		}
-		
+
 		@JSONProperty
 		public int getAge() {
 			return age;
@@ -56,14 +57,17 @@ public class MainTest {
 	@Test
 	public void toJSonPerson() {
 		var person = new Person("John", "Doe");
-		
-		assertEquals(
-				"{\n" + 
-				"	TON PRENOM:John,\n" +
-				"	lastName:Doe\n" +
-				"}"
-				,
-				Main.toJSON(person)				
-		);
+
+		assertEquals("{\n" + "	TON PRENOM:John,\n" + "	lastName:Doe\n" + "}", Main.toJSON(person));
+	}
+
+	@Test
+	public void toJSonAlien() {
+		var person = new Alien("John", 10);
+
+		assertEquals("{\n" + 
+				 "	age:10,\n" +
+				"	planet:John\n" + 
+				 "}", Main.toJSON(person));
 	}
 }
