@@ -12,9 +12,9 @@ public class Main {
 		return Character.toLowerCase(name.charAt(3)) + name.substring(4);
 	}
 
-	private static String fieldAndFieldValue(Method e, Object obj, Object[] attr){
+	private static String fieldAndFieldValue(Method e, Object obj){
 			try {
-				return propertyName(e.getName()) + ":" + e.invoke(obj, attr);
+				return propertyName(e.getName()) + ":" + e.invoke(obj);
 			} catch (IllegalAccessException | InvocationTargetException e1) {
 				return "";
 			}
@@ -24,7 +24,7 @@ public class Main {
 		var listOfMethods = obj.getClass().getMethods();
 		return Arrays.stream(listOfMethods)
 				.filter(e -> e.getName().startsWith("get"))
-				.map(e -> fieldAndFieldValue(e, obj, new Object[0]))
+				.map(e -> fieldAndFieldValue(e, obj)
 				.collect(joining(",\n\t", "{\n\t", "\n}"));
 	}
 
