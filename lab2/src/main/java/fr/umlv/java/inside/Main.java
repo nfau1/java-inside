@@ -3,20 +3,32 @@ package fr.umlv.java.inside;
 import static java.util.stream.Collectors.joining;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.lang.reflect.Method;
+
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.lang.ClassValue;
 
-public class Main {
+public class Main {	
 
-	private final static ClassValue<Method[]> cacheMethods = new ClassValue<Method[]>() {
+	private final static ClassValue<Function<Object, String>> cacheMethods = new ClassValue<Function<Object, String>>() {
 		@Override
-		protected Method[] computeValue(Class<?> type) {
-			return type.getMethods();
+		protected Function<Object, String> computeValue(Class<?> type) {
+			var methods = Arrays.stream(type.getMethods())
+								.filter(e -> e.getName().startsWith("get") && e.isAnnotationPresent(JSONProperty.class))
+								.sorted(Comparator.comparing(Method::getName))
+								.collect(Collectors.toList());
+								
+			return obj -> methods.stream()
+								 .map(e -> fieldAndFieldValue(e, obj))
+								 .collect(joining(",\n\t", "{\n\t", "\n}"));
 		}
 	};
+			
 	
 	private static String propertyName(String name) {
 		return Character.toLowerCase(name.charAt(3)) + name.substring(4);
@@ -29,7 +41,7 @@ public class Main {
 				 propertyName(e.getName()) : jsonProperty;
 	}
 
-	private static String fieldAndFieldValue(Method e, Object obj){
+	private static String fieldAndFieldValue(Method e, Object obj){		
 			try {
 				return getAnnotationNameOrMethodName(e) + ":" + e.invoke(obj);
 			} catch (IllegalAccessException e1) {
@@ -46,14 +58,10 @@ public class Main {
 	}
 
 	public static String toJSON(Object obj) {
-		var listOfMethods = cacheMethods.get(obj.getClass());
+		//var listOfMethods = cacheMethods.get(obj.getClass());
 		//var listOfMethods = obj.getClass().getMethods();
 
-		return Arrays.stream(listOfMethods)
-				.filter(e -> e.getName().startsWith("get") && e.isAnnotationPresent(JSONProperty.class))
-				.map(e -> fieldAndFieldValue(e, obj))
-				.sorted(Comparator.naturalOrder())
-				.collect(joining(",\n\t", "{\n\t", "\n}"));
+		return cacheMethods.get(obj.getClass()).apply(obj);
 	}
 
 	/*
