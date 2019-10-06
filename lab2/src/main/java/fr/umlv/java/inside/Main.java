@@ -22,9 +22,13 @@ public class Main {
 								.filter(e -> e.getName().startsWith("get") && e.isAnnotationPresent(JSONProperty.class))
 								.sorted(Comparator.comparing(Method::getName))
 								.collect(Collectors.toList());
+			
+			var map = methods.stream()
+								.collect(Collectors.toUnmodifiableMap(e -> e.getName(),
+										e -> getAnnotationNameOrMethodName(e)));
 								
 			return obj -> methods.stream()
-								 .map(e -> fieldAndFieldValue(e, obj))
+								 .map(e -> fieldAndFieldValue(e, obj,map.get(e.getName())))
 								 .collect(joining(",\n\t", "{\n\t", "\n}"));
 		}
 	};
@@ -41,9 +45,9 @@ public class Main {
 				 propertyName(e.getName()) : jsonProperty;
 	}
 
-	private static String fieldAndFieldValue(Method e, Object obj){		
+	private static String fieldAndFieldValue(Method e, Object obj, String name){		
 			try {
-				return getAnnotationNameOrMethodName(e) + ":" + e.invoke(obj);
+				return name + ":" + e.invoke(obj);
 			} catch (IllegalAccessException e1) {
 				throw new IllegalStateException(e1);
 			}
