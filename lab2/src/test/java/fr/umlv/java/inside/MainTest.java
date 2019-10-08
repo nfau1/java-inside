@@ -57,7 +57,7 @@ public class MainTest {
 	@Test
 	public void toJSonPerson() {
 		var person = new Person("John", "Doe");
-		for(var i=0; i < 1000000; i++)
+		for(var i=0; i < 10000000; i++)
 			assertEquals("{\n" + "	TON PRENOM:John,\n" + "	lastName:Doe\n" + "}", Main.toJSON(person));
 	}
 	
