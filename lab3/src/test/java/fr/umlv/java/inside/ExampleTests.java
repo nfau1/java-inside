@@ -82,21 +82,18 @@ public class ExampleTests {
 	
 	@Test @Tag("Q10")
 	public void TestAnInstanceHelloInvokeTestFail() throws Throwable{
-		var val = (Object)"pasfoo";
+		var val = "footage";
 		var lookup = MethodHandles.publicLookup();
 		var meth = lookup.findVirtual(String.class,"equals",  MethodType.methodType(boolean.class, Object.class));
 
-
-
 		var methode = MethodHandles.guardWithTest(
-				meth,
-				MethodHandles.dropArguments(MethodHandles.constant(int.class, 1), 0, String.class, Object.class),  
-				MethodHandles.dropArguments(MethodHandles.constant(int.class, -1), 0, String.class, Object.class)
+				meth.asType(MethodType.methodType(boolean.class, String.class, String.class)),
+				MethodHandles.dropArguments(MethodHandles.constant(int.class, 1), 0, String.class, String.class),  
+				MethodHandles.dropArguments(MethodHandles.constant(int.class, -1), 0, String.class, String.class)
 		);
 		
 		methode = MethodHandles.insertArguments(methode, 1, val);
-		
-		assertEquals(-1, (int)methode.invokeExact(new String("foo")));
+		assertEquals(-1, (int)methode.invokeExact("foo"));
 	}
 	
 	@Test @Tag("Q10")
