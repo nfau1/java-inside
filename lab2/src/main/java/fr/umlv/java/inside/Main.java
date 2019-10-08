@@ -32,7 +32,11 @@ public class Main {
 								 .collect(joining(",\n\t", "{\n\t", "\n}"));
 		}
 	};
-			
+		
+	public static String toJSON(Object obj) {
+		return cacheMethods.get(obj.getClass()).apply(obj);
+	}
+
 	
 	private static String propertyName(String name) {
 		return Character.toLowerCase(name.charAt(3)) + name.substring(4);
@@ -61,12 +65,6 @@ public class Main {
 			}
 	}
 
-	public static String toJSON(Object obj) {
-		//var listOfMethods = cacheMethods.get(obj.getClass());
-		//var listOfMethods = obj.getClass().getMethods();
-
-		return cacheMethods.get(obj.getClass()).apply(obj);
-	}
 
 	/*
 	 * public static String toJSON(Person person) { return "{\n" +
