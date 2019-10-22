@@ -99,6 +99,7 @@ public class StringSwitchExample {
 					MethodHandles.insertArguments(EQUALS_MH, 1, value),
 					MethodHandles.dropArguments(MethodHandles.constant(int.class, index), 0, String.class),
 					this.getTarget());
+			setTarget(mh);
 			return index;
 		}
 	}
