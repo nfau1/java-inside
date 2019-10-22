@@ -36,19 +36,10 @@ public class StringSwitchExampleTests {
 
 	static Stream<ToIntFunction<String>> stringIntAndListProvider() {
 	    return Stream.of(
-	       StringSwitchExample::stringSwitch
+	 	   StringSwitchExample::stringSwitch,
+	       StringSwitchExample::stringSwitch2
+	       
 	    );
 	}
-//	
-//	@ParameterizedTest
-//	@Tag("Q6")
-//	@MethodSource("stringIntAndListProvider")
-//	void stringSwitch2(ToIntFunction<String> fun) {
-//		assertAll(
-//		() -> assertEquals(0, fun.applyAsInt("foo")),
-//		() -> assertEquals(1, fun.applyAsInt("bar")),
-//		() -> assertEquals(2, fun.applyAsInt("bazz")),
-//		() -> assertEquals(-1, fun.applyAsInt("other")));
-//	}
 
 }
