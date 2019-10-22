@@ -18,7 +18,7 @@ public class ExampleTests {
 		var val = 12;
 		var meth =  Example.class.getDeclaredMethod("aStaticHello", int.class);
 		meth.setAccessible(true);
-		assertEquals("question " + val, meth.invoke(null,val)) ;
+		assertEquals("question " + val, meth.invoke(null,val));
 	}
 	
 	@Test @Tag("Q3")

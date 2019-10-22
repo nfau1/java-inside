@@ -3,6 +3,7 @@ package fr.umlv.java.inside;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -57,13 +58,25 @@ public class LoggerTests {
 		B.log.log("test1");
 		assertEquals("test1", B.str.toString());
 	}
-//	
-//	private static class C {
-//		private static final StringBuilder str = new StringBuilder();
-//		private static final Logger log = Logger.of(C.class, msg ->{str.delete(0, str.length()); str.append(msg);});
-//		private static final Logger log_2 = Logger.of(C.class, msg ->str.delete(0, str.length()));
-//
-//	}
+	
+	private static class C {
+		private static final StringBuilder str = new StringBuilder();
+		private static final Logger log = Logger.of(C.class, msg ->{str.delete(0, str.length()); str.append(msg);});
+
+	}
+		@Test
+	@Tag("Q9")
+	public void log_q9() {
+		C.log.log("test1");
+		assertEquals("test1", C.str.toString());
+	}
+	@Tag("Q9")
+	public void disable_q9() {
+		Logger.enable(C.class, false);
+		C.log.log("test1");
+		assertEquals("", C.str.toString());
+	}
+
 //
 //	@Test
 //	@Tag("Q9")

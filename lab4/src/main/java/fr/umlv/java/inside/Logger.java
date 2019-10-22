@@ -17,7 +17,6 @@ public interface Logger {
         	var callSite = new MutableCallSite(MethodHandles.constant(boolean.class, true));
         	MutableCallSite array [] =  new MutableCallSite[]{callSite};
    	      	MutableCallSite.syncAll(array);
-   	      	callSite.setTarget(MethodHandles.constant(boolean.class, true));
    	        return callSite;
         }
     };
