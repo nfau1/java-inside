@@ -1,6 +1,5 @@
 package fr.umlv.java.inside;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,10 +7,8 @@ import java.util.function.ToIntFunction;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringSwitchExampleTests {
 
@@ -42,5 +39,16 @@ public class StringSwitchExampleTests {
 	       StringSwitchExample::stringSwitch
 	    );
 	}
+//	
+//	@ParameterizedTest
+//	@Tag("Q6")
+//	@MethodSource("stringIntAndListProvider")
+//	void stringSwitch2(ToIntFunction<String> fun) {
+//		assertAll(
+//		() -> assertEquals(0, fun.applyAsInt("foo")),
+//		() -> assertEquals(1, fun.applyAsInt("bar")),
+//		() -> assertEquals(2, fun.applyAsInt("bazz")),
+//		() -> assertEquals(-1, fun.applyAsInt("other")));
+//	}
 
 }
