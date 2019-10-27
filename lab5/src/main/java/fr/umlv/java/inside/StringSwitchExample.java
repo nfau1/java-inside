@@ -22,12 +22,12 @@ public class StringSwitchExample {
 	}
 
 	public static int stringSwitch(String str) {
-		return switch (str) {
-		case "foo" -> 0;
-		case "bar" -> 1;
-		case "bazz" -> 2;
-		default -> -1;
-		};
+	switch (str) {
+		case "foo" : return 0;
+		case "bar" : return 1;
+		case "bazz" : return 2;
+		default : return -1;
+		}
 	}
 
 	public static int stringSwitch2(String str) {
@@ -91,10 +91,11 @@ public class StringSwitchExample {
 			this.matches = List.of(matches);
 			setTarget(MethodHandles.insertArguments(SLOW_PATH, 0, this));
 		}
-
+		
 		@SuppressWarnings("unused")
 		private int slowPath(String value) {
 			var index = this.matches.indexOf(value);
+			
 			var mh = MethodHandles.guardWithTest(
 					MethodHandles.insertArguments(EQUALS_MH, 1, value),
 					MethodHandles.dropArguments(MethodHandles.constant(int.class, index), 0, String.class),
@@ -102,6 +103,14 @@ public class StringSwitchExample {
 			setTarget(mh);
 			return index;
 		}
+		
+//		private int slowPath_2(String value) {
+//			var index = this.matches.indexOf(value);
+//			var mh = this.getTarget();
+//			mh.
+//			return index;
+//			
+//		}
 	}
 
 }

@@ -26,7 +26,7 @@ public class StringSwitchExampleTests {
 	@ParameterizedTest
 	@Tag("Q5")
 	@MethodSource("stringIntAndListProvider")
-	void TeststringSwitch2(ToIntFunction<String> fun) {
+	public void TeststringSwitch2(ToIntFunction<String> fun) {
 		assertAll(
 		() -> assertEquals(0, fun.applyAsInt("foo")),
 		() -> assertEquals(1, fun.applyAsInt("bar")),
