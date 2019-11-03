@@ -16,5 +16,5 @@ env :
     - TARGET : "lab5"
     - TARGET : "lab6"
 script :
-  - chmod u+x travis_script.sh 
+  - chmod u+x script_travis.sh 
   - ./script_travis.sh
