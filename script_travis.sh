@@ -5,7 +5,7 @@ if [ "$TARGET" = "lab6" ]; then
     if["$OSTYPE" == "linux-gnu"]; then
         wget https://github.com/forax/java-next/releases/download/untagged-c59655314c1759142c15/jdk-14-loom-linux.tar.gz
         tar xvf jdk-14-loom-linux.tar.gz
-    elif ["$OSTYPE" == "freebsd"]; then
+    elif ["$OSTYPE" == "darwin17"]; then
         wget https://github.com/forax/java-next/releases/download/untagged-c59655314c1759142c15/jdk-14-loom-osx.tar.gz
         tar xvf jdk-14-loom-osx.tar.gz
     fi
