@@ -2,13 +2,12 @@ package fr.umlv.java.inside;
 
 import java.util.List;
 
-import fr.umlv.java.inside.Scheduler.Strategy;
 
 public class Example1 {
 	public static void main(String[] args) {
 
 		var scope = new ContinuationScope("scope");
-		var scheduler = new Scheduler(Strategy.FIFO);
+		var scheduler = new Scheduler(Scheduler.Strategy.FIFO);
 		var continuation1 = new Continuation(scope, () -> {
 			System.out.println("start 1");
 			scheduler.enqueue(scope);
